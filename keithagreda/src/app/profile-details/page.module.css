@@ -1,0 +1,15 @@
+.basicDetails {
+  /* background-color: #124559; */
+  min-width: 320px;
+  max-width: 400px;
+  border: solid 2px red;
+  text-align: center;
+}
+
+.circle {
+  background-color: white;
+  width: 200px;
+  height: 200px;
+  border-radius: 50vw;
+  margin: auto;
+}
