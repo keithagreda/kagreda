@@ -2,14 +2,27 @@
   /* background-color: #124559; */
   min-width: 320px;
   max-width: 400px;
-  border: solid 2px red;
-  text-align: center;
+  text-align: left;
 }
 
 .circle {
-  background-color: white;
+  background-color: var(--white);
   width: 200px;
   height: 200px;
   border-radius: 50vw;
   margin: auto;
+}
+
+.basicDetails ul li {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.basicDetails li:hover {
+  transform: scale(1.1); /* Scale slightly larger */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+}
+
+.basicDetails ul li:last-child {
+  margin-bottom: 0;
 }
