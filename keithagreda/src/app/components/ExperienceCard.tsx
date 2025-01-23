@@ -1,15 +1,18 @@
 import React from "react";
 import style from "./ExperienceCard.module.css";
+import { Experience } from "../experience/page";
 
-const ExperienceCard = () => {
+const ExperienceCard: React.FC<Experience> = ({
+  tenure,
+  description,
+  name,
+}) => {
   return (
     <div className={`${style.card} gap-4`}>
-      <div className="">2023-PRESENT</div>
+      <div className="text-sm">{tenure}</div>
+      <div className="text-base font-semibold">{name}</div>
       <div className="text-left">
-        Quisque at felis molestie elit euismod fermentum. Sed eros lorem,
-        egestas ac leo at, lacinia dignissim dolor. Vivamus sit amet mi in nulla
-        dictum scelerisque. Ut rutrum massa ipsum, id blandit nibh consectetur
-        at
+        <p>{description}</p>
       </div>
     </div>
   );

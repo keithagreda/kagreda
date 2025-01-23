@@ -10,7 +10,6 @@
   width: 200px;
   height: 200px;
   border-radius: 50vw;
-  margin: auto;
 }
 
 .basicDetails ul li {
@@ -19,8 +18,8 @@
 }
 
 .basicDetails li:hover {
-  transform: scale(1.1); /* Scale slightly larger */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .basicDetails ul li:last-child {

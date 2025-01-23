@@ -32,3 +32,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.small-container {
+  width: 80%;
+  margin: 0 auto;
+}
