@@ -1,7 +1,13 @@
+.projectImg {
+  width: 175px;
+  height: 150px;
+  background-color: var(--white);
+  border-radius: 7px;
+}
+
 .card {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-direction: row;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
 }
@@ -9,10 +15,7 @@
 .card:hover {
   background-color: #042f42;
   border-radius: 7px;
-  padding: 5px 10px;
+  margin: 0px 2px;
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.exp-content {
 }
