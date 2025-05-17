@@ -5,33 +5,36 @@ export function Blob() {
   useEffect(() => {
     const blob = document.getElementById("blob");
 
-    // Ensure that the blob element is found before trying to move it
     if (blob) {
       document.body.onpointermove = (event) => {
-        const { clientX, clientY } = event;
-        blob.style.left = `${clientX}px`;
-        blob.style.top = `${clientY}px`;
+        const { pageX, pageY } = event;
+        blob.style.left = `${pageX - 125}px`; // 125 = 250px / 2
+        blob.style.top = `${pageY - 125}px`;
       };
     }
 
-    // Cleanup the event listener when the component unmounts
     return () => {
       document.body.onpointermove = null;
     };
-  }, []); // Empty dependency array means this runs once after the component mounts
+  }, []);
 
   return (
-    <div
-      id="blob"
-      style={{
-        position: "absolute",
-        width: "50px",
-        height: "50px",
-        backgroundColor: "red",
-        borderRadius: "50%",
-        pointerEvents: "none", // This ensures the pointer doesn't interact with the blob
-      }}
-    />
+    <>
+      <div
+        id="blob"
+        style={{
+          position: "absolute",
+          background:
+            "linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 91%",
+          width: "250px",
+
+          height: "250px",
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: -2,
+        }}
+      />
+    </>
   );
 }
 

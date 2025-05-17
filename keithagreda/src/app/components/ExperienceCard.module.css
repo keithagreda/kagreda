@@ -2,15 +2,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 5px 10px;
+
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
+  cursor: default;
 }
 
 .card:hover {
   background-color: #042f42;
   border-radius: 7px;
-  padding: 5px 10px;
-  transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

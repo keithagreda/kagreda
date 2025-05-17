@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <div style={{ cursor: "default" }}>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
         molestie ut mi non convallis. Proin varius facilisis libero, id pretium
