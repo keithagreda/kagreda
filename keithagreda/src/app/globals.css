@@ -51,9 +51,15 @@ body {
 
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+  scroll-behavior: smooth;
 }
 
 .scrollbar-hidden {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.highlight {
+  font-weight: 600;
+  color: #00d9a6; /* or your brand accent */
 }

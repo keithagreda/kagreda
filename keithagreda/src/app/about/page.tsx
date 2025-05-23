@@ -4,17 +4,26 @@ const page = () => {
   return (
     <div style={{ cursor: "default" }}>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        molestie ut mi non convallis. Proin varius facilisis libero, id pretium
-        arcu eleifend sed. Quisque facilisis nec erat non imperdiet. Vivamus et
-        dolor scelerisque, mollis tortor quis, interdum arcu. Donec tempor
-        pulvinar justo. Nam scelerisque fermentum molestie.
+        I’m <span className="highlight">Keith Agreda</span>, a{" "}
+        <span className="highlight">full-stack web developer</span> who enjoys
+        building <span className="highlight">reliable systems</span> and{" "}
+        <span className="highlight">clean user experiences</span>. From{" "}
+        <span className="highlight">efficient backend logic</span> to{" "}
+        <span className="highlight">intuitive frontend interfaces</span>, I aim
+        to craft products that not only{" "}
+        <span className="highlight">work well</span>, but{" "}
+        <span className="highlight">feel good to use</span>.
       </p>
+
       <p className="mt-5">
-        Integer placerat euismod dui et euismod. Phasellus varius enim nisl. In
-        hac habitasse platea dictumst. Quisque est diam, molestie ut lacus eu,
-        ultricies ultrices ex. Maecenas dignissim at tellus eu sodales. Ut vitae
-        magna in elit luctus viverra.
+        Whether I’m <span className="highlight">refining a UI</span> or{" "}
+        <span className="highlight">architecting scalable APIs</span>, I value{" "}
+        <span className="highlight">clarity</span>,{" "}
+        <span className="highlight">purpose</span>, and{" "}
+        <span className="highlight">thoughtful design</span>. This site is a
+        collection of what I’ve <span className="highlight">worked on</span> and{" "}
+        <span className="highlight">learned along the way</span>—feel free to
+        explore.
       </p>
     </div>
   );

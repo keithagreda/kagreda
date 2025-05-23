@@ -1,6 +1,6 @@
 .basicDetails {
   /* background-color: #124559; */
-  min-width: 320px;
+  /* min-width: 320px; */
   max-width: 400px;
   text-align: left;
   color: var(--secondary);
@@ -8,8 +8,8 @@
 
 .circle {
   background-color: var(--white);
-  width: 200px;
-  height: 200px;
+  width: 270px;
+  height: 270px;
   border-radius: 50vw;
 }
 
@@ -20,7 +20,7 @@
 
 .basicDetails li:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .basicDetails ul li:last-child {
@@ -29,4 +29,19 @@
 
 .imageCircle {
   border-radius: 50vw;
+}
+
+.navLinks {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.highlightTitle {
+  font-weight: 600;
+}
+
+.secondaryTitle {
+  font-weight: 500;
 }

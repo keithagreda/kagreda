@@ -8,7 +8,7 @@
 .card {
   display: flex;
   flex-direction: row;
-  margin: 0px 2px;
+  padding: 15px 15px;
 
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -19,4 +19,9 @@
   background-color: #042f42;
   border-radius: 7px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .highlightTitle {
+  font-weight: 600;
+  color: #00d9a6; /* or your brand accent */
 }

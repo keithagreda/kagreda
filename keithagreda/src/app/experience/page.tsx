@@ -9,22 +9,22 @@ export interface Experience {
 
 const exps: Experience[] = [
   {
-    tenure: "2020 - Present ",
-    name: "Software Engineer",
+    tenure: "Feb 2025 - Present ",
+    name: "Mid Software Developer",
     description:
-      "Quisque at felis molestie elit euismod fermentum. Sed eros lorem, egestas ac leo at, lacinia dignissim dolor. Vivamus sit amet mi in nulla dictum scelerisque. Ut rutrum massa ipsum, id blandit nibh consectetur at",
+      "Acted as the technical lead for a team of developers during the development of a custom HR System for the HR Deparment, reducing manual tasks and accelerating the hiring process",
   },
   {
-    tenure: "2018 - 2019",
-    name: "Frontend Developer",
+    tenure: "Aug 2023 - Feb 2025",
+    name: "Junior Software Developer",
     description:
-      "Vestibulum tortor dolor, lobortis vel lorem ac, lobortis pharetra purus. Sed quis feugiat mi. Nunc vitae rutrum enim. Aenean sed erat consectetur, cursus nunc sit amet, bibendum lorem. Aliquam sit amet finibus dolor, interdum auctor ligula. Nunc nibh mauris, dapibus vel diam nec, lobortis venenatis nibh. Cras eleifend rhoncus nunc id dignissim. Etiam et elementum ipsum, sollicitudin elementum felis. Aliquam ultricies volutpat quam, non vulputate nulla laoreet rutrum.",
+      "Optimized legacy code, reducing execution time from 6 hours to 10-30 minutes, significantly improving system performance and efficiency. Collaborated with cross-functional teams to address system bottlenecks and implement process improvements",
   },
   {
-    tenure: "2016 - 2017",
+    tenure: "May 2022 - July 2022",
     name: "Intern",
     description:
-      "Quisque at felis molestie elit euismod fermentum. Sed eros lorem, egestas ac leo at, lacinia dignissim dolor. Vivamus sit amet mi in nulla dictum scelerisque. Ut rutrum massa ipsum, id blandit nibh consectetur at",
+      "Developed a Visitor Management System due to the pandemic to help promote social distancing",
   },
 ];
 

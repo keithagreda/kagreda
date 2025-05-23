@@ -18,14 +18,21 @@ const page = () => {
           />
         </div>
         <div className="mt-2">
-          <h1 className="text-4xl font-bold">Keith Agreda</h1>
-          <h2 className="text-xl">Full-stack Web Developer</h2>
-          <p className="mt-6">
-            I create robust backends and polished frontends for modern web apps.
+          <div className={`${styles.details}`}>
+            <h1 className={`${styles.highlightTitle} text-4xl`}>
+              Keith Agreda
+            </h1>
+            <h2 className={`${styles.secondaryTitle} text-xl`}>
+              Full-stack Web Developer
+            </h2>
+          </div>
+          <p className="mt-6 text-justify md:text-left">
+            I bring structure to the backend and style to the frontend—shaping
+            web apps that just make sense.
           </p>
         </div>
         <nav className="hidden md:flex mt-7">
-          <ul className="text-left">
+          <ul className={`text-left ${styles.navLinks}`}>
             <li>ABOUT</li>
             <li>EXPERIENCE</li>
             <li>PROJECTS</li>
