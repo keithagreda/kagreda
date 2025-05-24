@@ -1,7 +1,7 @@
 "use client"; // Mark this file as a client component
 import React, { useEffect } from "react";
 
-export function Blob() {
+const Blob = () => {
   useEffect(() => {
     const blob = document.getElementById("blob");
 
@@ -19,24 +19,21 @@ export function Blob() {
   }, []);
 
   return (
-    <>
-      <div
-        id="blob"
-        style={{
-          position: "absolute",
-          background:
-            "linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 91%",
-          width: "250px",
-
-          height: "250px",
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: -2,
-        }}
-      />
-    </>
+    <div
+      id="blob"
+      style={{
+        position: "absolute",
+        background:
+          "linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 91%)",
+        width: "250px",
+        height: "250px",
+        borderRadius: "50%",
+        pointerEvents: "none",
+        zIndex: -2,
+      }}
+    />
   );
-}
+};
 
 const Page = () => {
   return <Blob />;
