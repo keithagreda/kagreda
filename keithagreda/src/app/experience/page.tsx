@@ -24,7 +24,7 @@ const exps: Experience[] = [
     tenure: "May 2022 - July 2022",
     name: "Intern",
     description:
-      "Developed a Visitor Management System due to the pandemic to help promote social distancing",
+      "Developed a Visitor Management System to support health protocols during the pandemic, enabling efficient visitor tracking and promoting social distancing.",
   },
 ];
 
