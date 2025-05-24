@@ -26,7 +26,7 @@ const projects: ProjectDto[] = [
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Projects</h1>
       {projects.map((prj, index) => (
         <ProjectCard

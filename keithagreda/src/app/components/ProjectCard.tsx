@@ -14,17 +14,17 @@ const ProjectCard: React.FC<ProjectDto> = ({
 }) => {
   return (
     <div
-      className={`${style.card} gap-4 hover:backdrop-blur-md hover:bg-[#042f42]/70 transition-all duration-300  rounded-lg hover:shadow-lg`}
+      className={`${style.card} pt-4 md:py-5 md:px-1 flex flex-col lg:flex-row gap-4 hover:backdrop-blur-md hover:bg-[#042f42]/70 transition-all duration-300  rounded-lg hover:shadow-lg`}
     >
       {/* image div */}
-      <div className="text-sm">
+      <div className="text-sm ">
         <div className={`${style.projectImg}`}> </div>
       </div>
       <div className="flex flex-col">
         <div className={`${style.highlightTitle} text-base font-semibold`}>
           {title}
         </div>
-        <div className="text-left">
+        <div className="text-justify md:text-left">
           <p>{description}</p>
         </div>
       </div>

@@ -30,7 +30,7 @@ const exps: Experience[] = [
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Experience</h1>
       {exps.map((exp, index) => (
         <ExperienceCard

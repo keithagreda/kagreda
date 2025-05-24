@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div style={{ cursor: "default" }}>
+    <div style={{ cursor: "default" }} className="text-justify md:text-left">
       <p>
         I’m <span className="highlight">Keith Agreda</span>, a{" "}
         <span className="highlight">full-stack web developer</span> who enjoys
