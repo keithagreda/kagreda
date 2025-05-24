@@ -25,6 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Replace the content value with your actual verification token from Google */}
+        <meta
+          name="google-site-verification"
+          content="google-site-verification=d5Zqm803QtQB_HTrTn26C4BnbyqwAQBjyMIt9FaTZhM"
+        />
+      </head>
       <body className={`antialiased font-sans`}>{children}</body>
     </html>
   );
