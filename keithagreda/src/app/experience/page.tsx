@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import ExperienceCard from "../components/ExperienceCard";
 
 export interface Experience {
@@ -28,9 +28,9 @@ const exps: Experience[] = [
   },
 ];
 
-const page = () => {
+const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className="flex flex-col md:gap-4 px-1 md:px-0">
+    <div ref={ref} className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Experience</h1>
       {exps.map((exp, index) => (
         <ExperienceCard
@@ -42,6 +42,8 @@ const page = () => {
       ))}
     </div>
   );
-};
+});
 
-export default page;
+Experience.displayName = "Experience";
+
+export default Experience;

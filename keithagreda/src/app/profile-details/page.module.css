@@ -29,9 +29,15 @@
 
 .imageCircle {
   border-radius: 50vw;
+  filter: grayscale(1);
+}
+
+.imageCircle:hover {
+  filter: unset;
 }
 
 .navLinks {
+  width: 100%;
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
@@ -44,4 +50,56 @@
 
 .secondaryTitle {
   font-weight: 500;
+}
+
+.navLinksItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.nav nav {
+  all: unset;
+  width: 100%;
+}
+
+.line {
+  content: "";
+  left: 200%; /* Place to the right of the button */
+  top: 50%;
+  height: 2px; /* Adjust as needed */
+  width: 10%; /* Adjust thickness */
+  background-color: white; /* Or your accent color */
+  border-radius: 2px;
+  margin-left: 8px; /* Space between text and highlight */
+  transition: width 0.5s ease;
+}
+
+.picFilter {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(1, 22, 30, 1) 0%,
+    rgba(18, 69, 89, 1) 10%,
+    rgba(0, 217, 166, 1) 100%
+  );
+  opacity: 0.4;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* <-- Move transition here */
+}
+
+.circle:hover .picFilter {
+  opacity: 0;
+  /* transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); */
+  /* transition: opacity 0.8s; */
+}
+
+.navHighLight {
+  width: 20%;
+  background-color: #00d9a6;
 }

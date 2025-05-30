@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import ProjectCard, { ProjectDto } from "../components/ProjectCard";
 const projects: ProjectDto[] = [
   {
@@ -24,9 +24,9 @@ const projects: ProjectDto[] = [
   // },
 ];
 
-const page = () => {
+const Projects = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div className="flex flex-col md:gap-4 px-1 md:px-0">
+    <div ref={ref} className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Projects</h1>
       {projects.map((prj, index) => (
         <ProjectCard
@@ -39,6 +39,8 @@ const page = () => {
       ))}
     </div>
   );
-};
+});
 
-export default page;
+Projects.displayName = "Projects";
+
+export default Projects;

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const page = () => {
+const About = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
-    <div style={{ cursor: "default" }} className="text-justify md:text-left">
+    <div
+      ref={ref}
+      style={{ cursor: "default" }}
+      className="text-justify md:text-left"
+    >
       <p>
         I’m <span className="highlight">Keith Agreda</span>, a{" "}
         <span className="highlight">full-stack web developer</span> who enjoys
@@ -27,6 +31,8 @@ const page = () => {
       </p>
     </div>
   );
-};
+});
 
-export default page;
+About.displayName = "About";
+
+export default About;
