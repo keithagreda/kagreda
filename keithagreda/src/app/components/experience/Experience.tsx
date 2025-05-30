@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import ExperienceCard from "../components/ExperienceCard";
+import ExperienceCard from "../ExperienceCard";
 
 export interface Experience {
   tenure: string;
@@ -28,7 +28,7 @@ const exps: Experience[] = [
   },
 ];
 
-const Experience = forwardRef<HTMLDivElement, {}>((props, ref) => {
+const Experience = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div ref={ref} className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Experience</h1>

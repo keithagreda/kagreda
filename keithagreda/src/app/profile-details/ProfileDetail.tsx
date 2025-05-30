@@ -10,7 +10,7 @@ type Props = {
   activeSection: string;
 };
 
-const Page = ({
+const ProfileDetail = ({
   aboutRef,
   experienceRef,
   projectRef,
@@ -102,4 +102,4 @@ const Page = ({
   );
 };
 
-export default Page;
+export default ProfileDetail;

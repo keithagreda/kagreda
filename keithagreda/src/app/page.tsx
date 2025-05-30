@@ -1,8 +1,8 @@
 "use client";
-import ProfileDetail from "./profile-details/page";
-import About from "./about/page";
-import Experience from "./experience/page";
-import Project from "./projects/page";
+import ProfileDetail from "./profile-details/ProfileDetail";
+import About from "./components/about/About";
+import Experience from "./components/experience/Experience";
+import Project from "./components/projects/Project";
 import Blob from "./blob/page";
 import { useEffect, useRef, useState } from "react";
 
@@ -21,11 +21,11 @@ function useIsDesktop(breakpoint = 768) {
 
 export default function Home() {
   const isDesktop = useIsDesktop();
-  const aboutRef = useRef<HTMLDivElement | null>(null);
-  const experienceRef = useRef<HTMLDivElement | null>(null);
-  const projectRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
+  const projectRef = useRef<HTMLDivElement>(null);
 
-  const scrollableRef = useRef<HTMLDivElement | null>(null);
+  const scrollableRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {

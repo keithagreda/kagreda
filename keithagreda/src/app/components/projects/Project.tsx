@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import ProjectCard, { ProjectDto } from "../components/ProjectCard";
+import ProjectCard, { ProjectDto } from "../ProjectCard";
 const projects: ProjectDto[] = [
   {
     id: 1,
@@ -24,7 +24,7 @@ const projects: ProjectDto[] = [
   // },
 ];
 
-const Projects = forwardRef<HTMLDivElement, {}>((props, ref) => {
+const Projects = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div ref={ref} className="flex flex-col md:gap-4 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Projects</h1>

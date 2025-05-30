@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-const About = forwardRef<HTMLDivElement, {}>((props, ref) => {
+const About = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       ref={ref}

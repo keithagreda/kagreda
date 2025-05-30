@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ExperienceCard.module.css";
-import { Experience } from "../experience/page";
+import { Experience } from "./experience/Experience";
 
 const ExperienceCard: React.FC<Experience> = ({
   tenure,
