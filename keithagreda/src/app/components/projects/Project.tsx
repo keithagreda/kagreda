@@ -5,15 +5,23 @@ const projects: ProjectDto[] = [
     id: 1,
     description:
       "A custom-built HR system designed to fit the unique workflow of the company—no templates, no shortcuts. It streamlines the hiring process, cuts down manual work, and supports a smooth shift to paperless operations.",
-    imageUrl: "yaya",
+    imageUrl: "",
     title: "Brigada HRMS",
   },
   {
     id: 2,
     description:
       "Designed specifically for the needs of an ice plant, this system makes it easy to monitor operations, spot issues early, and keep everything running at peak performance—with less stress and more insight.",
-    imageUrl: "yaya",
+    imageUrl: "",
     title: "RFI Iceplant Monitoring System",
+  },
+
+  {
+    id: 3,
+    description:
+      "A comprehensive POS and inventory system designed for TGIceCubes to streamline sales, track stock, and improve business efficiency.",
+    imageUrl: "",
+    title: "TGIceCubes Point of Sales and Inventory Management System",
   },
   // {
   //   id: 3,
@@ -26,7 +34,7 @@ const projects: ProjectDto[] = [
 
 const Projects = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div ref={ref} className="flex flex-col md:gap-4 px-1 md:px-0">
+    <div ref={ref} className="flex flex-col md:gap-6 px-1 md:px-0">
       <h1 className="text-xl font-semibold">Projects</h1>
       {projects.map((prj, index) => (
         <ProjectCard

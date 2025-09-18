@@ -29,31 +29,30 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const about = aboutRef.current;
-      const experience = experienceRef.current;
-      const project = projectRef.current;
-
+      const handleScroll = () => {
       const sections = [
-        { name: "about", ref: about },
-        { name: "experience", ref: experience },
-        { name: "project", ref: project },
+        { name: "about", ref: aboutRef.current },
+        { name: "experience", ref: experienceRef.current },
+        { name: "project", ref: projectRef.current },
       ];
 
-      // Find the section closest to the top
       let current = "about";
+      let maxVisibility = 0;
+
       sections.forEach((section) => {
         if (section.ref) {
           const rect = section.ref.getBoundingClientRect();
-          const normalOffset = 100;
-          const lastSectionOffset = 500;
-          if (current == "experience") {
-            if (rect.top <= lastSectionOffset) {
-              current = section.name;
-              return;
-            }
-          }
-          if (rect.top <= normalOffset) {
+          const viewportHeight = window.innerHeight;
+          
+          // Calculate how much of the section is visible
+          const visibleTop = Math.max(0, -rect.top);
+          const visibleBottom = Math.min(rect.height, viewportHeight - rect.top);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visibility = visibleHeight / rect.height;
+          
+          // Use the section with the highest visibility percentage
+          if (visibility > maxVisibility) {
+            maxVisibility = visibility;
             current = section.name;
           }
         }
