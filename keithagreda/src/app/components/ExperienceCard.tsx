@@ -10,7 +10,7 @@ const ExperienceCard: React.FC<Experience> = ({
   return (
     <>
       <div className="hover:backdrop-blur-md hover:bg-[#042f42]/70 transition-all duration-300  rounded-lg hover:shadow-lg">
-        <div className={`${style.card} px-1  py-5 `}>
+        <div className={`${style.card} px-1  py-2 `}>
           <div className="text-sm">{tenure}</div>
           <div className={`${style.highlightTitle} text-base font-semibold`}>
             {name}

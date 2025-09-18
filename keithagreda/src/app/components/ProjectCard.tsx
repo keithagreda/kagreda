@@ -15,7 +15,7 @@ const ProjectCard: React.FC<ProjectDto> = ({
   description,
 }) => {
   return (
-    <div className={`${style.card} flex flex-col lg:flex-row gap-4 rounded-lg px-2`}>
+    <div className={`${style.card} flex flex-col lg:flex-row gap-4 rounded-lg md:px-2 py-2`}>
       {imageUrl && (
         <div className="text-sm">
           <div className={`${style.projectImg}`}>
