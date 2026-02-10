@@ -1,5 +1,7 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import ProjectCard, { ProjectDto } from "../ProjectCard";
+import { useScrollFocus } from "@/hooks/useScrollFocus";
+
 const projects: ProjectDto[] = [
   {
     id: 1,
@@ -41,18 +43,30 @@ const projects: ProjectDto[] = [
 ];
 
 const Projects = forwardRef<HTMLDivElement>((props, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const activeIndex = useScrollFocus(containerRef, ".project-item");
+
   return (
-    <div ref={ref} className="group/list flex flex-col md:gap-12 px-1 md:px-0 md:pl-8 lg:pl-12">
+    <div
+      ref={(node) => {
+        containerRef.current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
+      }}
+      className={`group/list flex flex-col gap-16 md:gap-24 px-1 md:px-0 md:pl-8 lg:pl-12 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
+    >
       <h1 className="text-xl font-semibold">Projects</h1>
       {projects.map((prj, index) => (
-        <ProjectCard
-          key={index}
-          title={prj.title}
-          description={prj.description}
-          imageUrl={prj.imageUrl}
-          link={prj.link}
-          id={index}
-        />
+        <div key={index} className="project-item">
+          <ProjectCard
+            title={prj.title}
+            description={prj.description}
+            imageUrl={prj.imageUrl}
+            link={prj.link}
+            id={prj.id}
+            isFocused={activeIndex === index}
+          />
+        </div>
       ))}
     </div>
   );

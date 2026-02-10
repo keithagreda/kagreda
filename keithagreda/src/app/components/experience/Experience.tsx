@@ -1,5 +1,6 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import ExperienceCard from "../ExperienceCard";
+import { useScrollFocus } from "@/hooks/useScrollFocus";
 
 export interface Experience {
   tenure: string;
@@ -29,16 +30,28 @@ const exps: Experience[] = [
 ];
 
 const Experience = forwardRef<HTMLDivElement>((props, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const activeIndex = useScrollFocus(containerRef, ".experience-item");
+
   return (
-    <div ref={ref} className="group/list flex flex-col md:gap-8 px-1 md:px-0 md:pl-8 lg:pl-12">
+    <div
+      ref={(node) => {
+        containerRef.current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
+      }}
+      className={`group/list flex flex-col gap-12 md:gap-20 px-1 md:px-0 md:pl-8 lg:pl-12 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
+    >
       <h1 className="text-xl font-semibold">Experience</h1>
       {exps.map((exp, index) => (
-        <ExperienceCard
-          key={index}
-          tenure={exp.tenure}
-          description={exp.description}
-          name={exp.name}
-        />
+        <div key={index} className="experience-item">
+          <ExperienceCard
+            tenure={exp.tenure}
+            description={exp.description}
+            name={exp.name}
+            isFocused={activeIndex === index}
+          />
+        </div>
       ))}
     </div>
   );
