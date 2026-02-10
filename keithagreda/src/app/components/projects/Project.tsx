@@ -55,7 +55,7 @@ const Projects = forwardRef<HTMLDivElement>((props, ref) => {
       }}
       className={`group/list flex flex-col gap-16 md:gap-24 px-1 md:px-0 md:pl-8 lg:pl-12 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
     >
-      <h1 className="text-xl font-semibold">Projects</h1>
+      <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">Projects</h2>
       {projects.map((prj, index) => (
         <div key={index} className="project-item">
           <ProjectCard

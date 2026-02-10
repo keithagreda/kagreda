@@ -9,6 +9,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
   tenure,
   description,
   name,
+  company,
   isFocused,
 }) => {
   return (
@@ -20,9 +21,12 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         </header>
         <div className="z-10 sm:col-span-6">
           <h3 className="font-medium leading-snug text-slate-200">
-            <div>
-              <span className="font-display text-base font-semibold leading-tight text-[#00d9a6]">
+            <div className="flex flex-col">
+              <span className="font-display text-lg font-bold leading-tight text-[#00d9a6]">
                 {name}
+              </span>
+              <span className="text-sm font-medium text-slate-400 mt-1">
+                {company}
               </span>
             </div>
           </h3>

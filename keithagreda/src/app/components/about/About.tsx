@@ -5,8 +5,9 @@ const About = forwardRef<HTMLDivElement>((props, ref) => {
     <div
       ref={ref}
       style={{ cursor: "default" }}
-      className="text-justify md:text-left"
+      className="text-justify md:text-left flex flex-col gap-4"
     >
+      <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">About</h2>
       <p>
         I’m <span className="highlight">Keith Agreda</span>, a{" "}
         <span className="highlight">full-stack web developer</span> who enjoys
