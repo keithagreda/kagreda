@@ -10,7 +10,7 @@ export default function SmoothScrollWrapper({
 }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2, // seconds — controls scroll easing duration
+      duration: 1.2, // seconds - controls scroll easing duration
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easing function
       // 'smooth' is no longer an option here
     });

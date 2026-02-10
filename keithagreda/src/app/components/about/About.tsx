@@ -26,7 +26,7 @@ const About = forwardRef<HTMLDivElement>((props, ref) => {
         <span className="highlight">purpose</span>, and{" "}
         <span className="highlight">thoughtful design</span>. This site is a
         collection of what I’ve <span className="highlight">worked on</span> and{" "}
-        <span className="highlight">learned along the way</span>—feel free to
+        <span className="highlight">learned along the way</span> - feel free to
         explore.
       </p>
     </div>

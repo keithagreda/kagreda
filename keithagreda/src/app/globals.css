@@ -33,7 +33,6 @@ body {
   line-height: 1.6;
   color: var(--accent);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .small-container {
@@ -55,13 +54,16 @@ body {
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .highlight {
   font-weight: 600;
-  color: #00d9a6; /* or your brand accent */
+  color: #00d9a6;
+  /* or your brand accent */
 }
 
 div {
@@ -71,7 +73,8 @@ div {
 .navHighlight {
   font-weight: 600;
 
-  letter-spacing: 0.25em; /* or try 0.3em, 0.4em for even more spacing */
+  letter-spacing: 0.25em;
+  /* or try 0.3em, 0.4em for even more spacing */
   display: inline-flex;
   align-items: center;
   color: #00d9a6;

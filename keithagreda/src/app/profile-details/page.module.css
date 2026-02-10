@@ -7,12 +7,10 @@
 }
 
 .circle {
-  background: linear-gradient(
-    135deg,
-    rgba(1, 22, 30, 1) 0%,
-    rgba(18, 69, 89, 1) 10%,
-    rgba(0, 217, 166, 1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(1, 22, 30, 1) 0%,
+      rgba(18, 69, 89, 1) 10%,
+      rgba(0, 217, 166, 1) 100%);
   width: 270px;
   height: 270px;
   border-radius: 50vw;
@@ -56,47 +54,86 @@
 
 .secondaryTitle {
   font-weight: 500;
+  opacity: 0.9;
+}
+
+.nav nav {
+  margin-top: 2rem;
 }
 
 .navLinksItem {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
   align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
 }
 
-.nav nav {
-  all: unset;
-  width: 100%;
+.navLinksItem button {
+  color: var(--secondary);
+  opacity: 0.5;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 6.5rem;
+  /* Fixed width to align lines based on EXPERIENCE */
+  text-align: left;
+}
+
+.navLinksItem:hover button {
+  opacity: 1;
+  letter-spacing: 0.2em;
+}
+
+.navLinksItem button[data-active="true"] {
+  opacity: 1;
+  color: #00d9a6;
+  letter-spacing: 0.2em;
 }
 
 .line {
-  content: "";
-  left: 200%; /* Place to the right of the button */
-  top: 50%;
-  height: 2px; /* Adjust as needed */
-  width: 10%; /* Adjust thickness */
-  background-color: white; /* Or your accent color */
-  border-radius: 2px;
-  margin-left: 8px; /* Space between text and highlight */
-  transition: width 0.5s ease;
+  height: 1px;
+  width: 3rem;
+  /* Standardized min size */
+  background-color: var(--secondary);
+  opacity: 0.5;
+  transition: width 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.navLinksItem:hover .line {
+  width: 6rem;
+  /* Standardized max size */
+  opacity: 1;
+}
+
+.navLinksItem button[data-active="true"]+.line,
+.navLinksItem .line.navHighLight {
+  width: 6rem;
+  /* Standardized max size */
+  background-color: #00d9a6;
+  opacity: 1;
 }
 
 .picFilter {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(1, 22, 30, 1) 0%,
-    rgba(18, 69, 89, 1) 10%,
-    rgba(0, 217, 166, 1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(1, 22, 30, 1) 0%,
+      rgba(18, 69, 89, 1) 10%,
+      rgba(0, 217, 166, 1) 100%);
   opacity: 0.4;
   border-radius: 50%;
   z-index: 2;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* <-- Move transition here */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* <-- Move transition here */
 }
 
 .circle:hover .picFilter {
@@ -106,6 +143,7 @@
 }
 
 .navHighLight {
-  width: 20%;
+  width: 4rem;
   background-color: #00d9a6;
+  opacity: 1;
 }
