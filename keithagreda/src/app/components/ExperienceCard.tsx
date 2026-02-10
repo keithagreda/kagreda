@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./ExperienceCard.module.css";
 import { Experience } from "./experience/Experience";
 
 interface ExperienceCardProps extends Experience {

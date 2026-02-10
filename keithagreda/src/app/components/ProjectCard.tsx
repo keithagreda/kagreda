@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image"; // Add this import
-import style from "./ProjectCard.module.css";
 import Modal from "./Modal";
 
 export interface ProjectDto {
