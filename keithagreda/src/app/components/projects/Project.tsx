@@ -23,7 +23,7 @@ const projects: ProjectDto[] = [
       "A comprehensive POS and inventory system designed for TGIceCubes to streamline sales, track stock, and improve business efficiency.",
     imageUrl: "/tgicecubespos.webp",
     title: "TGIceCubes Point of Sales and Inventory Management System",
-    link: "https://tgicecubes.up.railway.app",
+    // link: "https://tgicecubes.up.railway.app",
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ const projects: ProjectDto[] = [
       "Designed specifically for the needs of an ice plant, this system makes it easy to monitor operations, spot issues early, and keep everything running at peak performance - with less stress and more insight.",
     imageUrl: "/rfiiiceplantpos.webp",
     title: "RFI Iceplant Monitoring System",
-    link: "https://rfiiceplant.up.railway.app"
+    // link: "https://rfiiceplant.up.railway.app"
   },
   {
     id: 5,
