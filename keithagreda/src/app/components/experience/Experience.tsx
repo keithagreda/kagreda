@@ -11,18 +11,18 @@ export interface Experience {
 
 const exps: Experience[] = [
   {
-    tenure: "Feb 2025 - Present ",
+    tenure: "Feb 2025 - Present",
     name: "Mid Software Developer",
     company: "Brigada Group of Companies",
     description:
-      "Acted as the technical lead for a team of developers during the development of a custom HR System for the HR Deparment, reducing manual HR tasks by 40%+ and accelerating the hiring process",
+      "Led development of a custom HR system for the HR Department, reducing manual HR tasks by 40%+ and accelerating the hiring process.",
   },
   {
     tenure: "Aug 2023 - Feb 2025",
     name: "Junior Software Developer",
     company: "Brigada Group of Companies",
     description:
-      "Optimized legacy code, reducing execution time from 6 hours to 10-30 minutes, significantly improving system performance and efficiency. Collaborated with cross-functional teams to address system bottlenecks and implement process improvements",
+      "Optimized legacy code, reducing execution time from 6 hours to 10-30 minutes. Collaborated with cross-functional teams to address system bottlenecks and implement process improvements.",
   },
   {
     tenure: "May 2022 - July 2022",

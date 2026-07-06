@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useId, useRef } from "react";
 import Image from "next/image";
 
 interface ModalProps {
@@ -20,17 +20,50 @@ const Modal: React.FC<ModalProps> = ({
     imageUrl,
     link,
 }) => {
+    const titleId = useId();
+    const modalRef = useRef<HTMLDivElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    const previousActiveElementRef = useRef<HTMLElement | null>(null);
+
     useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === "Escape") onClose();
+        if (!isOpen) return;
+
+        const previousOverflow = document.body.style.overflow;
+        previousActiveElementRef.current = document.activeElement as HTMLElement | null;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                onClose();
+                return;
+            }
+
+            if (e.key !== "Tab" || !modalRef.current) return;
+
+            const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+                'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (!firstElement || !lastElement) return;
+
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
         };
-        if (isOpen) {
-            document.body.style.overflow = "hidden";
-            window.addEventListener("keydown", handleEsc);
-        }
+
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", handleKeyDown);
+        window.setTimeout(() => closeButtonRef.current?.focus(), 0);
+
         return () => {
-            document.body.style.overflow = "unset";
-            window.removeEventListener("keydown", handleEsc);
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener("keydown", handleKeyDown);
+            previousActiveElementRef.current?.focus();
         };
     }, [isOpen, onClose]);
 
@@ -45,10 +78,17 @@ const Modal: React.FC<ModalProps> = ({
             />
 
             {/* Content */}
-            <div className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-[#042f42] border border-slate-200/10 shadow-2xl animate-in zoom-in-95 fade-in duration-300">
+            <div
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={titleId}
+                className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-[#042f42] border border-slate-200/10 shadow-2xl animate-in zoom-in-95 fade-in duration-300"
+            >
                 <button
+                    ref={closeButtonRef}
                     onClick={onClose}
-                    className="absolute right-4 top-4 z-20 rounded-full p-2 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                    className="absolute right-4 top-4 z-20 rounded-full p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#042f42]"
                     aria-label="Close modal"
                 >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,7 +115,7 @@ const Modal: React.FC<ModalProps> = ({
                     )}
 
                     <div className="p-8">
-                        <h2 className="font-display text-2xl font-bold text-[#00d9a6] mb-4">
+                        <h2 id={titleId} className="font-display text-2xl font-bold text-[#00d9a6] mb-4">
                             {title}
                         </h2>
                         <p className="text-secondary/80 leading-relaxed text-sm lg:text-base mb-8">
@@ -91,7 +131,7 @@ const Modal: React.FC<ModalProps> = ({
                                         href={link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group inline-flex items-center gap-2 rounded-full bg-[#00d9a6] px-6 py-2.5 text-sm font-semibold text-[#01161e] hover:bg-[#00f2ba] transition-all hover:scale-105"
+                                        className="group inline-flex items-center gap-2 rounded-full bg-[#00d9a6] px-6 py-2.5 text-sm font-semibold text-[#01161e] transition-all hover:scale-105 hover:bg-[#00f2ba] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#042f42]"
                                     >
                                         Open Live Project
                                         <svg className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

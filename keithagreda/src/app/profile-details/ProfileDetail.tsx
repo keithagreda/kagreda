@@ -16,6 +16,10 @@ const ProfileDetail = ({
   projectRef,
   activeSection,
 }: Props) => {
+  const scrollToSection = (sectionRef: RefObject<HTMLDivElement | null>) => {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header>
       <div className={styles.basicDetails}>
@@ -81,15 +85,33 @@ const ProfileDetail = ({
             I bring structure to the backend and style to the frontend - shaping
             web apps that just make sense.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => scrollToSection(projectRef)}
+              className="rounded-full bg-[#00d9a6] px-5 py-2 text-sm font-semibold text-[#01161e] transition hover:bg-[#00f2ba] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#01161e]"
+            >
+              View projects
+            </button>
+            <a
+              href="https://linkedin.com/in/keithagreda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-secondary/20 px-5 py-2 text-sm font-semibold text-secondary/80 transition hover:border-[#00d9a6] hover:text-[#00d9a6] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#01161e]"
+            >
+              Contact me
+            </a>
+          </div>
         </div>
 
         <nav className={`${styles.nav} hidden md:flex mt-7 w-fit`}>
           <div className={`text-left ${styles.navLinks} flex flex-col gap-2`}>
-            <div
-              className={styles.navLinksItem}
-              onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <button data-active={activeSection === "about"}>
+            <div className={styles.navLinksItem}>
+              <button
+                type="button"
+                data-active={activeSection === "about"}
+                onClick={() => scrollToSection(aboutRef)}
+              >
                 ABOUT
               </button>
               <div
@@ -97,11 +119,12 @@ const ProfileDetail = ({
                   }`}
               ></div>
             </div>
-            <div
-              className={styles.navLinksItem}
-              onClick={() => experienceRef.current?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <button data-active={activeSection === "experience"}>
+            <div className={styles.navLinksItem}>
+              <button
+                type="button"
+                data-active={activeSection === "experience"}
+                onClick={() => scrollToSection(experienceRef)}
+              >
                 EXPERIENCE
               </button>
               <div
@@ -109,12 +132,13 @@ const ProfileDetail = ({
                   }`}
               ></div>
             </div>
-            <div
-              className={styles.navLinksItem}
-              onClick={() => projectRef.current?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <button data-active={activeSection === "project"}>
-                PROJECT
+            <div className={styles.navLinksItem}>
+              <button
+                type="button"
+                data-active={activeSection === "project"}
+                onClick={() => scrollToSection(projectRef)}
+              >
+                PROJECTS
               </button>
               <div
                 className={`${styles.line} ${activeSection === "project" ? styles.navHighLight : ""

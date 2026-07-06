@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Image from "next/image"; // Add this import
+import React, { KeyboardEvent, useState } from "react";
+import Image from "next/image";
 import Modal from "./Modal";
 
 export interface ProjectDto {
@@ -23,10 +23,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openModal = () => setIsModalOpen(true);
+
+  const handleCardKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openModal();
+    }
+  };
+
   const CardContent = (
     <div
-      className={`group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer ${isFocused ? "!opacity-100" : ""}`}
-      onClick={() => setIsModalOpen(true)}
+      role="button"
+      tabIndex={0}
+      aria-haspopup="dialog"
+      aria-label={`View details for ${title}`}
+      className={`group relative grid gap-4 pb-1 text-left transition-all focus:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-4 focus-visible:ring-offset-[#01161e] sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer ${isFocused ? "!opacity-100" : ""}`}
+      onClick={openModal}
+      onKeyDown={handleCardKeyDown}
     >
       <div className={`absolute -inset-x-4 -inset-y-4 z-0 rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-[#042f42]/30 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg" : "hidden"}`}></div>
 
@@ -58,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                  className="inline-block h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
                   aria-hidden="true"
                 >
                   <path

@@ -87,6 +87,12 @@
   text-align: left;
 }
 
+.navLinksItem button:focus-visible {
+  border-radius: 0.25rem;
+  outline: 2px solid #00d9a6;
+  outline-offset: 4px;
+}
+
 .navLinksItem:hover button {
   opacity: 1;
   letter-spacing: 0.2em;
