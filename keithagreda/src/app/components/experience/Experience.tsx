@@ -44,7 +44,7 @@ const Experience = forwardRef<HTMLDivElement>((props, ref) => {
         if (typeof ref === "function") ref(node);
         else if (ref) ref.current = node;
       }}
-      className={`group/list flex flex-col gap-12 md:gap-20 px-1 md:px-0 md:pl-8 lg:pl-12 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
+      className={`group/list flex flex-col gap-12 px-1 md:gap-20 md:px-0 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
     >
       <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">Experience</h2>
       {exps.map((exp, index) => (

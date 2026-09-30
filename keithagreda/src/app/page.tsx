@@ -98,7 +98,7 @@ export default function Home() {
         </>
       )}
       <div className="mx-auto min-h-screen max-w-screen-xl px-6 md:px-12 py-12 font-sans md:py-16 lg:py-0">
-        <main className="flex flex-col md:flex-row gap-8 items-start">
+        <main className="flex min-w-0 flex-col md:flex-row gap-8 items-start">
           <div className="w-full pt-0 pb-0 md:pt-12 md:pb-12 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
             <ProfileDetail
               aboutRef={aboutRef}
@@ -110,7 +110,7 @@ export default function Home() {
 
           <div
             ref={scrollableRef}
-            className="w-full flex flex-col gap-20 pt-0 pb-0 md:pt-12 md:pb-12 lg:w-[52%] md:max-h-screen md:overflow-auto scrollbar-hidden"
+            className="w-full min-w-0 flex flex-col gap-20 pt-0 pb-0 md:pt-12 md:pb-12 lg:w-[52%] md:max-h-screen md:overflow-y-auto md:overflow-x-hidden scrollbar-hidden"
           >
             <About ref={aboutRef} />
             <Experience ref={experienceRef} />

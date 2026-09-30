@@ -38,11 +38,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       tabIndex={0}
       aria-haspopup="dialog"
       aria-label={`View details for ${title}`}
-      className={`group relative grid gap-4 pb-1 text-left transition-all focus:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-4 focus-visible:ring-offset-[#01161e] sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer ${isFocused ? "!opacity-100" : ""}`}
+      className={`group relative grid gap-4 px-4 py-4 text-left transition-all focus:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-4 focus-visible:ring-offset-[#01161e] sm:grid-cols-8 sm:gap-8 md:gap-4 lg:px-6 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer ${isFocused ? "!opacity-100" : ""}`}
       onClick={openModal}
       onKeyDown={handleCardKeyDown}
     >
-      <div className={`absolute -inset-x-4 -inset-y-4 z-0 rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-[#042f42]/30 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg" : "hidden"}`}></div>
+      <div className={`absolute inset-0 z-0 rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-[#042f42]/30 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg" : "hidden"}`}></div>
 
       <div className="z-10 sm:col-span-2">
         {imageUrl ? (

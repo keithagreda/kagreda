@@ -27,9 +27,14 @@
 html {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.6;
   color: var(--accent);
   background: var(--background);
