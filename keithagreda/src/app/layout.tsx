@@ -15,9 +15,15 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Keith Agreda",
+  title: "Keith Agreda | Full-Stack Developer · AI Integrations",
   description:
-    "Keith Agreda - Full-stack web developer based in General Santos City, Philippines. I create fast, reliable web applications with clean user experiences.",
+    "Full-stack developer with 3+ years building .NET, Angular, and Next.js business applications and production AI voice integrations. Based in the Philippines, open to remote roles.",
+  openGraph: {
+    title: "Keith Agreda | Full-Stack Developer · AI Integrations",
+    description:
+      "Business applications, data workflow optimization, and production AI voice integrations. Explore projects built with .NET, Angular, Next.js, and Vapi.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

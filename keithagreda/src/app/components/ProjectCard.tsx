@@ -1,110 +1,70 @@
-import React, { KeyboardEvent, useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import Modal from "./Modal";
+import type { Project } from "../data/portfolio";
 
-export interface ProjectDto {
-  id: number;
-  title: string;
-  imageUrl?: string | null;
-  description?: string | null;
-  link?: string | null;
-}
-
-interface ProjectCardProps extends ProjectDto {
+interface ProjectCardProps extends Project {
   isFocused?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  imageUrl,
-  description,
-  link,
-  isFocused,
-}) => {
+export default function ProjectCard({ isFocused, ...project }: ProjectCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-
-  const handleCardKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openModal();
-    }
-  };
-
-  const CardContent = (
-    <div
-      role="button"
-      tabIndex={0}
-      aria-haspopup="dialog"
-      aria-label={`View details for ${title}`}
-      className={`group relative grid gap-4 px-4 py-4 text-left transition-all focus:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-4 focus-visible:ring-offset-[#01161e] sm:grid-cols-8 sm:gap-8 md:gap-4 lg:px-6 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer ${isFocused ? "!opacity-100" : ""}`}
-      onClick={openModal}
-      onKeyDown={handleCardKeyDown}
-    >
-      <div className={`absolute inset-0 z-0 rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-[#042f42]/30 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg" : "hidden"}`}></div>
-
-      <div className="z-10 sm:col-span-2">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={title}
-            width={200}
-            height={112} // Adjusted height for better aspect ratio
-            quality={60}
-            loading="lazy"
-            className="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 object-cover"
-          />
-        ) : (
-          <div className="flex aspect-video w-full items-center justify-center rounded border-2 border-slate-200/10 bg-slate-200/5 transition group-hover:border-slate-200/30 sm:translate-y-1">
-            <span className="font-display text-xs font-bold tracking-widest text-slate-500">NDA</span>
-          </div>
-        )}
-      </div>
-
-      <div className="z-10 sm:col-span-6">
-        <h3 className="font-medium leading-snug text-slate-200">
-          <div>
-            <span className="font-display text-base font-semibold leading-tight text-[#00d9a6] flex items-center gap-1">
-              {title}
-              {link && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="inline-block h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              )}
-            </span>
-          </div>
-        </h3>
-        <p className="mt-2 text-sm leading-normal text-secondary/80 line-clamp-2 md:line-clamp-none">
-          {description ?? "No description available."}
-        </p>
-      </div>
-    </div>
-  );
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   return (
     <>
-      {CardContent}
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title={title}
-        description={description ?? "No description available."}
-        imageUrl={imageUrl}
-        link={link}
-      />
+      <article className={`group relative min-w-0 rounded-md px-4 py-5 transition-colors motion-reduce:transition-none lg:px-6 lg:hover:bg-[#042f42]/30 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]" : ""}`}>
+        {project.featured && project.imageUrl && (
+          <Image
+            src={project.imageUrl}
+            alt={`${project.title} application preview`}
+            width={640}
+            height={360}
+            sizes="(min-width: 1280px) 580px, (min-width: 1024px) 50vw, 90vw"
+            className="mb-5 aspect-video w-full rounded-md border border-secondary/10 object-cover"
+          />
+        )}
+        <p className="mb-2 text-xs font-medium text-secondary/60">{project.role}</p>
+        <h3 className="font-display text-xl font-semibold leading-snug text-[#00d9a6]">
+          {project.title}
+        </h3>
+        <p className="mt-2 text-xs leading-relaxed text-secondary/70">
+          <span className="sr-only">Technology stack: </span>{project.stack.join(" · ")}
+        </p>
+        <p className="mt-4 text-sm leading-relaxed">{project.description}</p>
+        {project.featured && (
+          <p className="mt-3 text-sm leading-relaxed text-secondary/80">{project.ownership}</p>
+        )}
+        {project.details && <p className="mt-3 text-sm leading-relaxed">{project.details}</p>}
+        {project.outcome && (
+          <p className="mt-4 border-l-2 border-[#00d9a6]/60 pl-3 text-sm font-medium text-secondary">
+            {project.outcome}
+          </p>
+        )}
+        <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium">
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            aria-haspopup="dialog"
+            aria-label={`View details for ${project.title}`}
+            className="rounded-sm text-secondary underline decoration-secondary/30 underline-offset-4 hover:decoration-[#00d9a6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00d9a6]"
+          >
+            Project details
+          </button>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${project.title} (opens in a new tab)`}
+              className="rounded-sm text-[#00d9a6] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00d9a6]"
+            >
+              Visit website <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+      </article>
+      <Modal isOpen={isModalOpen} onClose={closeModal} project={project} />
     </>
   );
-};
-
-export default ProjectCard;
+}

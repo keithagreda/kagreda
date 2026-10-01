@@ -1,42 +1,24 @@
-import React from "react";
-import { Experience } from "./experience/Experience";
+import type { Experience } from "../data/portfolio";
 
 interface ExperienceCardProps extends Experience {
   isFocused?: boolean;
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({
+export default function ExperienceCard({
   tenure,
-  description,
+  highlights,
   name,
   company,
   isFocused,
-}) => {
+}: ExperienceCardProps) {
   return (
-    <>
-      <div className={`group relative grid px-4 py-4 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:px-6 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 ${isFocused ? "!opacity-100" : ""}`}>
-        <div className={`absolute inset-0 z-0 rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-[#042f42]/30 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg" : "hidden"}`}></div>
-        <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">
-          {tenure}
-        </header>
-        <div className="z-10 sm:col-span-6">
-          <h3 className="font-medium leading-snug text-slate-200">
-            <div className="flex flex-col">
-              <span className="font-display text-lg font-bold leading-tight text-[#00d9a6]">
-                {name}
-              </span>
-              <span className="text-sm font-medium text-slate-400 mt-1">
-                {company}
-              </span>
-            </div>
-          </h3>
-          <p className="mt-2 text-sm leading-normal text-secondary/80">
-            {description}
-          </p>
-        </div>
-      </div>
-    </>
+    <article className={`group relative rounded-md px-4 py-5 transition-colors motion-reduce:transition-none lg:px-6 lg:hover:bg-[#042f42]/30 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] ${isFocused ? "bg-[#042f42]/30 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]" : ""}`}>
+      <p className="mb-2 text-xs font-medium text-secondary/60">{tenure}</p>
+      <h3 className="font-display text-lg font-semibold leading-snug text-[#00d9a6]">{name}</h3>
+      <p className="mt-1 text-sm text-secondary/80">{company}</p>
+      <ul className="mt-4 list-disc space-y-3 pl-4 text-sm leading-relaxed marker:text-[#00d9a6]/60">
+        {highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+      </ul>
+    </article>
   );
-};
-
-export default ExperienceCard;
+}

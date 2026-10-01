@@ -1,39 +1,28 @@
-import React, { forwardRef } from "react";
-
-const About = forwardRef<HTMLDivElement>((props, ref) => {
+export default function About() {
   return (
-    <div
-      ref={ref}
-      style={{ cursor: "default" }}
-      className="text-justify md:text-left flex flex-col gap-4"
-    >
-      <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">About</h2>
-      <p>
-        I&apos;m <span className="highlight">Keith Agreda</span>, a{" "}
-        <span className="highlight">full-stack web developer</span> who enjoys
-        building <span className="highlight">reliable systems</span> and{" "}
-        <span className="highlight">clean user experiences</span>. From{" "}
-        <span className="highlight">efficient backend logic</span> to{" "}
-        <span className="highlight">intuitive frontend interfaces</span>, I aim
-        to craft products that not only{" "}
-        <span className="highlight">work well</span>, but{" "}
-        <span className="highlight">feel good to use</span>.
-      </p>
-
-      <p className="mt-5">
-        Whether I&apos;m <span className="highlight">refining a UI</span> or{" "}
-        <span className="highlight">architecting scalable APIs</span>, I value{" "}
-        <span className="highlight">clarity</span>,{" "}
-        <span className="highlight">purpose</span>, and{" "}
-        <span className="highlight">thoughtful design</span>. This site is a
-        collection of what I&apos;ve <span className="highlight">worked on</span> and{" "}
-        <span className="highlight">learned along the way</span> - feel free to
-        explore.
-      </p>
-    </div>
+    <section id="about" aria-labelledby="about-heading" className="scroll-mt-8 px-4 lg:px-6">
+      <h2 id="about-heading" className="mb-6 font-display text-2xl font-semibold text-secondary">
+        About
+      </h2>
+      <div className="space-y-4 text-left leading-relaxed">
+        <p>
+          I&apos;m Keith, a full-stack developer with 3+ years of experience
+          building business applications with .NET, Angular, Next.js, SQL Server,
+          and PostgreSQL.
+        </p>
+        <p>
+          My work spans an HR system supporting 900+ eligible employees, a booking
+          platform with 300+ registered users, and data workflows across 50+ cash
+          register terminals. For client projects, I handle discovery and
+          requirements through implementation, deployment, and ongoing support.
+        </p>
+        <p>
+          I also build backend tools for production AI voice agents, connecting
+          customer calls to pricing logic and dispatcher workflows. I&apos;m
+          looking for remote full-stack roles, including opportunities to build
+          AI-powered business applications.
+        </p>
+      </div>
+    </section>
   );
-});
-
-About.displayName = "About";
-
-export default About;
+}

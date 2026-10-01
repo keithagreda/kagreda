@@ -1,121 +1,78 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import ProfileDetail from "./profile-details/ProfileDetail";
 import About from "./components/about/About";
+import Skills from "./components/skills/Skills";
+import Projects from "./components/projects/Project";
 import Experience from "./components/experience/Experience";
-import Project from "./components/projects/Project";
+import Contact from "./components/contact/Contact";
 import Blob from "./blob/page";
-import { useEffect, useRef, useState } from "react";
-
-function useIsDesktop(breakpoint = 768) {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkScreen = () => setIsDesktop(window.innerWidth >= breakpoint);
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, [breakpoint]);
-
-  return isDesktop;
-}
+import { sections } from "./data/portfolio";
+import styles from "./page.module.css";
 
 export default function Home() {
-  const isDesktop = useIsDesktop();
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const experienceRef = useRef<HTMLDivElement>(null);
-  const projectRef = useRef<HTMLDivElement>(null);
-
-  const scrollableRef = useRef<HTMLDivElement>(null);
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("about");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        { name: "about", ref: aboutRef.current },
-        { name: "experience", ref: experienceRef.current },
-        { name: "project", ref: projectRef.current },
-      ];
+    const media = window.matchMedia("(min-width: 1024px)");
+    const updateDesktop = () => setIsDesktop(media.matches);
+    updateDesktop();
+    media.addEventListener("change", updateDesktop);
+    return () => media.removeEventListener("change", updateDesktop);
+  }, []);
 
-      let current = "about";
-      let maxVisibility = 0;
-
-      sections.forEach((section) => {
-        if (section.ref) {
-          const rect = section.ref.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-
-          const visibleTop = Math.max(0, -rect.top);
-          const visibleBottom = Math.min(rect.height, viewportHeight - rect.top);
-          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-          const visibility = visibleHeight / rect.height;
-
-          if (visibility > maxVisibility) {
-            maxVisibility = visibility;
-            current = section.name;
-          }
+  useEffect(() => {
+    let frame = 0;
+    const updateActiveSection = () => {
+      let current: string = "about";
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element && element.getBoundingClientRect().top <= window.innerHeight * 0.35) {
+          current = section.id;
         }
-      });
-
+      }
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        current = "contact";
+      }
       setActiveSection(current);
     };
-
-    const scrollable = scrollableRef.current;
-    if (scrollable) {
-      scrollable.addEventListener("scroll", handleScroll, { passive: true });
-    }
-
-    if (!isDesktop) {
-      window.addEventListener("scroll", handleScroll, { passive: true });
-    }
-
-    handleScroll();
-
-    return () => {
-      if (scrollable) {
-        scrollable.removeEventListener("scroll", handleScroll);
-      }
-      if (!isDesktop) {
-        window.removeEventListener("scroll", handleScroll);
-      }
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateActiveSection);
     };
-  }, [isDesktop]);
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, []);
 
   return (
-    <div className="scrollbar-hidden">
+    <div>
+      <a href="#content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-secondary focus:px-4 focus:py-2 focus:text-[#01161e]">
+        Skip to content
+      </a>
       {isDesktop && (
         <>
           <Blob />
-          <div
-            id="blur"
-            style={{
-              position: "fixed",
-              height: "100%",
-              width: "100%",
-              zIndex: -2,
-              backdropFilter: "blur(200px)",
-            }}
-          />
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-[2] backdrop-blur-[200px]" />
         </>
       )}
-      <div className="mx-auto min-h-screen max-w-screen-xl px-6 md:px-12 py-12 font-sans md:py-16 lg:py-0">
-        <main className="flex min-w-0 flex-col md:flex-row gap-8 items-start">
-          <div className="w-full pt-0 pb-0 md:pt-12 md:pb-12 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
-            <ProfileDetail
-              aboutRef={aboutRef}
-              experienceRef={experienceRef}
-              projectRef={projectRef}
-              activeSection={activeSection}
-            />
-          </div>
-
-          <div
-            ref={scrollableRef}
-            className="w-full min-w-0 flex flex-col gap-20 pt-0 pb-0 md:pt-12 md:pb-12 lg:w-[52%] md:max-h-screen md:overflow-y-auto md:overflow-x-hidden scrollbar-hidden"
-          >
-            <About ref={aboutRef} />
-            <Experience ref={experienceRef} />
-            <Project ref={projectRef} />
-          </div>
+      <div className="mx-auto grid min-h-screen max-w-screen-xl grid-cols-1 items-start gap-16 px-4 py-10 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-12 lg:px-12 lg:py-12">
+        <div className={styles.profileColumn}>
+          <ProfileDetail activeSection={activeSection} />
+        </div>
+        <main id="content" tabIndex={-1} className="flex min-w-0 flex-col gap-16 pb-12 outline-none lg:gap-20">
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
         </main>
       </div>
     </div>

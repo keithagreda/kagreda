@@ -1,0 +1,12 @@
+.profileColumn {
+  min-width: 0;
+  padding-inline: 1rem;
+}
+
+/* Keep all profile links reachable on short laptop and landscape screens. */
+@media (min-width: 1024px) and (min-height: 850px) {
+  .profileColumn {
+    position: sticky;
+    top: 3rem;
+  }
+}

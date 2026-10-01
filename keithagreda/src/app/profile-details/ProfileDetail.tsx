@@ -1,25 +1,13 @@
-import React, { RefObject } from "react";
+import { contactEmail, sections } from "../data/portfolio";
 import styles from "./page.module.css";
 import Image from "next/image";
 import keithImg from "./keith-agreda-picture.webp";
 
-type Props = {
-  aboutRef: RefObject<HTMLDivElement | null>;
-  experienceRef: RefObject<HTMLDivElement | null>;
-  projectRef: RefObject<HTMLDivElement | null>;
+interface Props {
   activeSection: string;
-};
+}
 
-const ProfileDetail = ({
-  aboutRef,
-  experienceRef,
-  projectRef,
-  activeSection,
-}: Props) => {
-  const scrollToSection = (sectionRef: RefObject<HTMLDivElement | null>) => {
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
+const ProfileDetail = ({ activeSection }: Props) => {
   return (
     <header>
       <div className={styles.basicDetails}>
@@ -28,8 +16,9 @@ const ProfileDetail = ({
             className={styles.imageCircle}
             src={keithImg}
             alt="A picture of Keith Agreda"
-            width={400}
-            height={400}
+            width={144}
+            height={144}
+            sizes="(min-width: 1024px) 144px, 112px"
             priority
             placeholder="blur"
             style={{ zIndex: 1, objectFit: "cover" }}
@@ -42,8 +31,10 @@ const ProfileDetail = ({
               Keith Agreda
             </h1>
             <h2 className={`${styles.secondaryTitle} text-xl highlight`}>
-              Full-stack Web Developer
+              Full-Stack Developer · AI Integrations
             </h2>
+            <p className="mt-3 text-sm text-secondary/70">General Santos City, Philippines</p>
+            <p className="mt-1 text-sm text-[#00d9a6]">Open to remote roles · UTC+8</p>
             <div className="flex items-center gap-5 mt-4">
               <a
                 href="https://github.com/keithagreda"
@@ -81,71 +72,42 @@ const ProfileDetail = ({
               </a>
             </div>
           </div>
-          <p className="mt-6 text-justify md:text-left">
-            I bring structure to the backend and style to the frontend - shaping
-            web apps that just make sense.
+          <p className="mt-6 text-left leading-relaxed">
+            Full-stack developer with 3+ years building .NET, Angular, and Next.js
+            applications. I deliver business systems from requirements through
+            deployment and support, optimize data workflows, and build tools for
+            production AI voice agents.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => scrollToSection(projectRef)}
+            <a
+              href="#projects"
               className="rounded-full bg-[#00d9a6] px-5 py-2 text-sm font-semibold text-[#01161e] transition hover:bg-[#00f2ba] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#01161e]"
             >
               View projects
-            </button>
+            </a>
             <a
-              href="https://linkedin.com/in/keithagreda"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${contactEmail}`}
               className="rounded-full border border-secondary/20 px-5 py-2 text-sm font-semibold text-secondary/80 transition hover:border-[#00d9a6] hover:text-[#00d9a6] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00d9a6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#01161e]"
             >
-              Contact me
+              Email me
             </a>
           </div>
         </div>
 
-        <nav className={`${styles.nav} hidden md:flex mt-7 w-fit`}>
-          <div className={`text-left ${styles.navLinks} flex flex-col gap-2`}>
-            <div className={styles.navLinksItem}>
-              <button
-                type="button"
-                data-active={activeSection === "about"}
-                onClick={() => scrollToSection(aboutRef)}
-              >
-                ABOUT
-              </button>
-              <div
-                className={`${styles.line} ${activeSection === "about" ? styles.navHighLight : ""
-                  }`}
-              ></div>
-            </div>
-            <div className={styles.navLinksItem}>
-              <button
-                type="button"
-                data-active={activeSection === "experience"}
-                onClick={() => scrollToSection(experienceRef)}
-              >
-                EXPERIENCE
-              </button>
-              <div
-                className={`${styles.line} ${activeSection === "experience" ? styles.navHighLight : ""
-                  }`}
-              ></div>
-            </div>
-            <div className={styles.navLinksItem}>
-              <button
-                type="button"
-                data-active={activeSection === "project"}
-                onClick={() => scrollToSection(projectRef)}
-              >
-                PROJECTS
-              </button>
-              <div
-                className={`${styles.line} ${activeSection === "project" ? styles.navHighLight : ""
-                  }`}
-              ></div>
-            </div>
-          </div>
+        <nav aria-label="Page sections" className="mt-8 border-t border-secondary/10 pt-5">
+          <ul className="flex flex-wrap gap-x-5 gap-y-3">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  aria-current={activeSection === section.id ? "location" : undefined}
+                  className={`rounded-sm text-sm font-medium transition-colors hover:text-[#00d9a6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00d9a6] ${activeSection === section.id ? "text-[#00d9a6]" : "text-secondary/70"}`}
+                >
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </header>

@@ -1,78 +1,38 @@
-import React, { forwardRef, useRef } from "react";
-import ProjectCard, { ProjectDto } from "../ProjectCard";
+import { useRef } from "react";
+import ProjectCard from "../ProjectCard";
 import { useScrollFocus } from "@/hooks/useScrollFocus";
+import { projects } from "../../data/portfolio";
 
-const projects: ProjectDto[] = [
-  {
-    id: 1,
-    title: "Triangle Centre Court",
-    description:
-      "A real-time pickleball court booking platform for Triangle Centre Court, helping players reserve slots, manage payments, and track booking status online.",
-    imageUrl: "/trianglecentrecourt.webp",
-    link: "https://trianglecentrecourt.com/",
-  },
-  {
-    id: 2,
-    title: "Alectric Engineering Services",
-    description: "A professional service platform tailored for engineering consultations and project management.",
-    imageUrl: "/alectricengineeringservices.webp",
-    link: "https://alectric-solar-web.vercel.app",
-  },
-  {
-    id: 4,
-    description:
-      "A comprehensive POS and inventory system designed for TGIceCubes to streamline sales, track stock, and improve business efficiency.",
-    imageUrl: "/tgicecubespos.webp",
-    title: "TGIceCubes Point of Sales and Inventory Management System",
-    // link: "https://tgicecubes.up.railway.app",
-  },
-  {
-    id: 5,
-    description:
-      "A custom-built HR system designed to fit the unique workflow of the company - no templates, no shortcuts. It streamlines the hiring process, cuts down manual work, and supports a smooth shift to paperless operations.",
-    imageUrl: "",
-    title: "Brigada HRMS",
-  },
-  {
-    id: 6,
-    description:
-      "Designed specifically for the needs of an ice plant, this system makes it easy to monitor operations, spot issues early, and keep everything running at peak performance - with less stress and more insight.",
-    imageUrl: "/rfiiiceplantpos.webp",
-    title: "RFI Iceplant Monitoring System",
-    // link: "https://rfiiceplant.up.railway.app"
-  },
-];
-
-const Projects = forwardRef<HTMLDivElement>((props, ref) => {
+export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeIndex = useScrollFocus(containerRef, ".project-item");
+  const featured = projects.filter((project) => project.featured);
+  const additional = projects.filter((project) => !project.featured);
 
   return (
-    <div
-      ref={(node) => {
-        containerRef.current = node;
-        if (typeof ref === "function") ref(node);
-        else if (ref) ref.current = node;
-      }}
-      className={`group/list flex flex-col gap-16 px-1 md:gap-24 md:px-0 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
-    >
-      <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">Projects</h2>
-      {projects.map((prj, index) => (
-        <div key={index} className="project-item">
-          <ProjectCard
-            title={prj.title}
-            description={prj.description}
-            imageUrl={prj.imageUrl}
-            link={prj.link}
-            id={prj.id}
-            isFocused={activeIndex === index}
-          />
+    <section id="projects" aria-labelledby="projects-heading" className="scroll-mt-8">
+      <h2 id="projects-heading" className="mb-6 px-4 font-display text-2xl font-semibold text-secondary lg:px-6">
+        Featured projects
+      </h2>
+      <div ref={containerRef} className="group/list">
+        <div className="flex flex-col gap-6">
+          {featured.map((project, index) => (
+            <div key={project.id} className="project-item">
+              <ProjectCard {...project} isFocused={activeIndex === index} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+        <h3 className="mb-4 mt-12 px-4 font-display text-lg font-medium text-secondary lg:px-6">
+          More projects
+        </h3>
+        <div className="flex flex-col gap-4">
+          {additional.map((project, index) => (
+            <div key={project.id} className="project-item">
+              <ProjectCard {...project} isFocused={activeIndex === featured.length + index} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-});
-
-Projects.displayName = "Projects";
-
-export default Projects;
+}

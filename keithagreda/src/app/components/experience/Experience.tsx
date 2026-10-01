@@ -1,67 +1,24 @@
-import React, { forwardRef, useRef } from "react";
+import { useRef } from "react";
 import ExperienceCard from "../ExperienceCard";
 import { useScrollFocus } from "@/hooks/useScrollFocus";
+import { experiences } from "../../data/portfolio";
 
-export interface Experience {
-  tenure: string;
-  name: string;
-  company: string;
-  description: string;
-}
-
-const exps: Experience[] = [
-  {
-    tenure: "Feb 2025 - Present",
-    name: "Mid Software Developer",
-    company: "Brigada Group of Companies",
-    description:
-      "Led development of a custom HR system for the HR Department, reducing manual HR tasks by 40%+ and accelerating the hiring process.",
-  },
-  {
-    tenure: "Aug 2023 - Feb 2025",
-    name: "Junior Software Developer",
-    company: "Brigada Group of Companies",
-    description:
-      "Optimized legacy code, reducing execution time from 6 hours to 10-30 minutes. Collaborated with cross-functional teams to address system bottlenecks and implement process improvements.",
-  },
-  {
-    tenure: "May 2022 - July 2022",
-    name: "Intern",
-    company: "Brigada Group of Companies",
-    description:
-      "Developed a Visitor Management System to support health protocols during the pandemic, enabling efficient visitor tracking and promoting social distancing.",
-  },
-];
-
-const Experience = forwardRef<HTMLDivElement>((props, ref) => {
+export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeIndex = useScrollFocus(containerRef, ".experience-item");
 
   return (
-    <div
-      ref={(node) => {
-        containerRef.current = node;
-        if (typeof ref === "function") ref(node);
-        else if (ref) ref.current = node;
-      }}
-      className={`group/list flex flex-col gap-12 px-1 md:gap-20 md:px-0 ${activeIndex !== -1 ? "mobile-active-list" : ""}`}
-    >
-      <h2 className="text-xl font-semibold uppercase tracking-widest text-secondary/50">Experience</h2>
-      {exps.map((exp, index) => (
-        <div key={index} className="experience-item">
-          <ExperienceCard
-            tenure={exp.tenure}
-            description={exp.description}
-            name={exp.name}
-            company={exp.company}
-            isFocused={activeIndex === index}
-          />
-        </div>
-      ))}
-    </div>
+    <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-8">
+      <h2 id="experience-heading" className="mb-6 px-4 font-display text-2xl font-semibold text-secondary lg:px-6">
+        Experience
+      </h2>
+      <div ref={containerRef} className="group/list flex flex-col gap-6">
+        {experiences.map((experience, index) => (
+          <div key={experience.tenure} className="experience-item">
+            <ExperienceCard {...experience} isFocused={activeIndex === index} />
+          </div>
+        ))}
+      </div>
+    </section>
   );
-});
-
-Experience.displayName = "Experience";
-
-export default Experience;
+}
